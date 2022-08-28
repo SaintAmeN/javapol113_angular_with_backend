@@ -23,6 +23,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductsComponent } from './products/products.component';
 import { ProductsListComponent } from './products-list/products-list.component';
 import { ProductsService } from './products-service/products.service';
+import { HttpClientModule } from '@angular/common/http';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +51,9 @@ import { ProductsService } from './products-service/products.service';
     MatDatepickerModule,
     MatDividerModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    MatProgressBarModule,
   ],
   providers: [ProductsService],
   bootstrap: [AppComponent]

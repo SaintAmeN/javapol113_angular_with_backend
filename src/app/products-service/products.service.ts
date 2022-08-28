@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 export enum ProductState {
@@ -26,6 +27,20 @@ export type Product = {
 })
 export class ProductsService {
   productList: Product[] = []
+  loadingList: boolean = false;
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+
+  public refreshProductList(): void {
+    this.loadingList = true;
+
+    this.http.get('http://localhost:8080/products')
+      .subscribe((data) => { // promise
+        this.loadingList = false
+        console.log(data)
+
+        let receivedProductList = data as Product[];
+        this.productList = receivedProductList;
+      })
+  }
 }

@@ -21,7 +21,10 @@ export class ProductsListComponent implements OnInit {
 
   }
 
+  // Component Lifecycle
   ngOnInit(): void {
+    // Po załadowaniu komponentu pobieramy ponownie elementy z backendu (refresh)
+    this.productService.refreshProductList()
   }
 
 }
