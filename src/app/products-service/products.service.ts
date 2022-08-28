@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/internal/Observable';
 
 export enum ProductState {
   NEW = "NEW",
@@ -54,5 +55,13 @@ export class ProductsService {
       price: 1.0,
       quantity: 1
     }
+  }
+
+  public sendProductToBackend(product: Product): Observable<Object>{
+    return this.http.post('http://localhost:8080/products', product);
+  }
+
+  public deleteFromBackend(productId: number): Observable<Object>{
+    return this.http.delete('http://localhost:8080/products/'+productId)
   }
 }

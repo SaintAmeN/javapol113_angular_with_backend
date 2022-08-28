@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProductsService } from '../products-service/products.service';
 
 @Component({
@@ -7,17 +8,18 @@ import { ProductsService } from '../products-service/products.service';
   styleUrls: ['./products-list.component.css']
 })
 export class ProductsListComponent implements OnInit {
-  displayedColumns : string[] = [
+  displayedColumns: string[] = [
     'identifier',
     'name',
     'description',
     'state',
     'type',
     'price',
-    'quantity'
+    'quantity',
+    'delete-button'
   ]
 
-  constructor(protected productService : ProductsService) {
+  constructor(private snackBar: MatSnackBar, protected productService: ProductsService) {
 
   }
 
@@ -27,4 +29,21 @@ export class ProductsListComponent implements OnInit {
     this.productService.refreshProductList()
   }
 
+  deleteProduct(id: number): void {
+    this.productService.deleteFromBackend(id)
+      .subscribe({
+        next: (_) => {
+          this.snackBar.open('Product has been deleted', undefined, {
+            verticalPosition: 'top',
+            horizontalPosition: 'start',
+            duration: 5000
+          })
+          this.productService.refreshProductList()
+        },
+        error: (error) => {
+          console.log(error)
+          this.productService.refreshProductList()
+        }
+      })
+  }
 }

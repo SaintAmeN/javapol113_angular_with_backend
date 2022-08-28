@@ -1,14 +1,56 @@
+<div #ref *ngIf="notification" class="notification">
+  {{notification}}
+</div>
+
 <mat-card>
-    <mat-card-title>Products Form</mat-card-title>
-    <mat-card-subtitle>Add new Products to Your list of available products</mat-card-subtitle>
-    <mat-card-content class="products-form-content">
-      <mat-form-field appearance="legacy">
-        <mat-label>Name:</mat-label>
-        <input type="text" matInput placeholder="Name:" [(ngModel)]="product.name">
-      </mat-form-field>
-      <mat-form-field appearance="legacy">
-        <mat-label>Description:</mat-label>
-        <input type="text" matInput placeholder="Description:" [(ngModel)]="product.description">
-      </mat-form-field>
-    </mat-card-content>
+  <mat-card-title>Products Form</mat-card-title>
+  <mat-card-subtitle>Add new Products to Your list of available products</mat-card-subtitle>
+  <mat-card-content class="products-form-content">
+
+    <mat-form-field appearance="legacy">
+      <mat-label>Name:</mat-label>
+      <input type="text" matInput placeholder="Name:" [(ngModel)]="product.name">
+    </mat-form-field>
+
+    <mat-form-field appearance="legacy">
+      <mat-label>Description:</mat-label>
+      <input type="text" matInput placeholder="Description:" [(ngModel)]="product.description">
+    </mat-form-field>
+
+    <mat-form-field appearance="legacy">
+      <mat-label>State:</mat-label>
+      <mat-select [(ngModel)]="product.state">
+        <mat-option value="NEW">New</mat-option>
+        <mat-option value="USED">Used</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="legacy">
+      <mat-label>Type:</mat-label>
+      <mat-select [(ngModel)]="product.type">
+        <mat-option value="ELECTRONICS">ELECTRONICS</mat-option>
+        <mat-option value="FOOD">FOOD</mat-option>
+        <mat-option value="LIQUOR">LIQUOR</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="legacy">
+      <mat-label>Price:</mat-label>
+      <input type="number" min="0.01" step="0.01" matInput placeholder="Price:" [(ngModel)]="product.price">
+    </mat-form-field>
+
+    <mat-form-field appearance="legacy">
+      <mat-label>Quantity:</mat-label>
+      <input type="number" min="1" step="1" matInput placeholder="Quantity:" [(ngModel)]="product.quantity">
+    </mat-form-field>
+
+    <div class="form-button-row">
+      <button class="submit-button" type="button" mat-button mat-raised-button (click)="sendProduct()">
+        Submit
+      </button>
+      <button class="clear-button" type="button" mat-button mat-raised-button color="warn" (click)="clearForm()">
+        Clear
+      </button>
+    </div>
+  </mat-card-content>
 </mat-card>

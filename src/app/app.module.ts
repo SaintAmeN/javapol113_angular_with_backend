@@ -27,6 +27,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ProductsFormComponent } from './products-form/products-form.component';
 
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,6 +58,7 @@ import { ProductsFormComponent } from './products-form/products-form.component';
     ReactiveFormsModule,
     HttpClientModule,
     MatProgressBarModule,
+    MatSnackBarModule
   ],
   providers: [ProductsService],
   bootstrap: [AppComponent]

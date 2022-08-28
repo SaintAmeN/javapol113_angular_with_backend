@@ -1,5 +1,7 @@
 .product-table{
   width: 100%;
+  border: 1px solid white;
+  border-radius: 2px;
 }
 
 .mat-column-identifier{
@@ -18,3 +20,10 @@ mat-card-footer {
   padding-top:10px;
 }
 
+.mat-column-delete-button {
+  width: 48px;
+}
+
+.record-delete-button {
+  border-radius: 16px;
+}
