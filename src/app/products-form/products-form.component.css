@@ -1,0 +1,4 @@
+.products-form-content{
+  display: flex;
+  flex-direction: column;
+}

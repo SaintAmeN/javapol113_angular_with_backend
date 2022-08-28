@@ -13,7 +13,7 @@ export enum ProductType {
 }
 
 export type Product = {
-  id: number,
+  id: number|null,
   name: string,
   description: string,
   state: ProductState,
@@ -42,5 +42,17 @@ export class ProductsService {
         let receivedProductList = data as Product[];
         this.productList = receivedProductList;
       })
+  }
+
+  public getDefautProductModel(): Product {
+    return {
+      id: null,
+      name: '',
+      description: '',
+      state: ProductState.NEW,
+      type: ProductType.FOOD,
+      price: 1.0,
+      quantity: 1
+    }
   }
 }

@@ -25,13 +25,15 @@ import { ProductsListComponent } from './products-list/products-list.component';
 import { ProductsService } from './products-service/products.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { ProductsFormComponent } from './products-form/products-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ProductsComponent,
-    ProductsListComponent
+    ProductsListComponent,
+    ProductsFormComponent
   ],
   imports: [
     BrowserModule,
