@@ -21,11 +21,14 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDividerModule } from '@angular/material/divider';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductsComponent } from './products/products.component';
+import { ProductsListComponent } from './products-list/products-list.component';
+import { ProductsService } from './products-service/products.service';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    ProductsComponent
+    ProductsComponent,
+    ProductsListComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +50,7 @@ import { ProductsComponent } from './products/products.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [ProductsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

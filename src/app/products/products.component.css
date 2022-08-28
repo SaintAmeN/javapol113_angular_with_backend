@@ -1,0 +1,16 @@
+.product-btn-add{
+  background-color: var(--gopher-color);
+  color: black;
+}
+
+app-products-list {
+  width: 100%;
+  margin: 10px;
+}
+
+.products-content-tile{
+  width: 100%;
+  height: 100%;
+  margin: 10px;
+}
+

@@ -1,1 +1,18 @@
-<p>products works!</p>
+<div class="products-container">
+  <mat-grid-list cols="12" rowHeight="24px">
+    <!-- Pasek na którym wyświetlimy guzik -->
+    <mat-grid-tile [colspan]="10" rowspan="2"></mat-grid-tile>
+    <mat-grid-tile [colspan]="2" rowspan="2">
+      <button mat-raised-button mat-icon-button class="product-btn-add">
+        <mat-icon>add</mat-icon>
+      </button>
+    </mat-grid-tile>
+
+    <!-- Tutaj umieścimy tabelkę z produktami -->
+    <mat-grid-tile [colspan]="12" rowspan="20" >
+      <div class="products-content-tile">
+        <app-products-list></app-products-list>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
