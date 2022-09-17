@@ -13,32 +13,32 @@ export class AllProductsListComponent implements OnInit {
     content: [],
     totalElements: 0
   };
-  pageNumber: number = 0;
-  pageSize: number = 10;
+  loadingList : boolean = false;
+
+  // x? <- mówi że może być unidentified
+  // zmienna: number|undefined|null;
 
   constructor(private productsService: ProductsService) {
-    // this.pageResponse = null;
   }
 
   ngOnInit(): void {
-    
   }
 
   chanagePage(pageEvent?:PageEvent): void {
-    console.log('Change page all')
+    this.loadingList = true
     this.productsService.getProductList(pageEvent?.pageIndex, pageEvent?.pageSize)
       .subscribe({
         next: (data) => {
-          // this.loadingList = false
+          this.loadingList = false
           console.log(data)
 
           let receivedProductPageResponse = data as PageResponse<Product>;
           this.pageResponse = receivedProductPageResponse;
         },
         error: (error) => {
+          this.loadingList = false
           console.log(error)
         }
       })
   }
-
 }

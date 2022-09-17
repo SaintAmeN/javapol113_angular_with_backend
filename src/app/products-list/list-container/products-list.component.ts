@@ -23,14 +23,13 @@ export class ProductsListComponent implements OnInit {
 
   @Input("productList") productList: Product[] = [];
   @Input("totalElements") totalElements: number = 0;
+  @Input("loadingList") loadingList: boolean = false;
 
   @Output() loadProductsEvent = new EventEmitter<PageEvent>();
 
-  constructor(private snackBar: MatSnackBar, protected productService: ProductsService) {
-
+  constructor() {
   }
 
-  // Component Lifecycle
   ngOnInit(): void {
     this.loadProductsEvent.emit({
       pageSize: 3,
@@ -40,21 +39,21 @@ export class ProductsListComponent implements OnInit {
   }
 
   deleteProduct(id: number): void {
-    this.productService.deleteFromBackend(id)
-      .subscribe({
-        next: (_) => {
-          this.snackBar.open('Product has been deleted', undefined, {
-            verticalPosition: 'top',
-            horizontalPosition: 'start',
-            duration: 5000
-          })
-          // this.productService.refreshProductList()
-        },
-        error: (error) => {
-          console.log(error)
-          // this.productService.refreshProductList()
-        }
-      })
+  //   this.productService.deleteFromBackend(id)
+  //     .subscribe({
+  //       next: (_) => {
+  //         this.snackBar.open('Product has been deleted', undefined, {
+  //           verticalPosition: 'top',
+  //           horizontalPosition: 'start',
+  //           duration: 5000
+  //         })
+  //         // this.productService.refreshProductList()
+  //       },
+  //       error: (error) => {
+  //         console.log(error)
+  //         // this.productService.refreshProductList()
+  //       }
+  //     })
   }
 
   loadProducts(event?: PageEvent) {
