@@ -27,3 +27,7 @@ mat-card-footer {
 .record-delete-button {
   border-radius: 16px;
 }
+
+.mat-paginator{
+  margin-top: 8px;
+}
