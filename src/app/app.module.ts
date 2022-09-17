@@ -26,6 +26,7 @@ import { ProductsService } from './products-service/products.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ProductsFormComponent } from './products-form/products-form.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RegistrationFormComponent } from './registration-form/registration-form.component';
@@ -65,7 +66,8 @@ import { AllProductsListComponent } from './products-list/all-products-list/all-
     ReactiveFormsModule,
     HttpClientModule,
     MatProgressBarModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatPaginatorModule
   ],
   providers: [
     ProductsService,

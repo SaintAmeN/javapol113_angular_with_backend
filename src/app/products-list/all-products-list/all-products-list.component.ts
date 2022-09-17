@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 import { PageResponse } from 'src/app/model/pagination';
 import { Product, ProductsService } from 'src/app/products-service/products.service';
 
@@ -9,7 +10,8 @@ import { Product, ProductsService } from 'src/app/products-service/products.serv
 })
 export class AllProductsListComponent implements OnInit {
   pageResponse: PageResponse<Product> = {
-    content: []
+    content: [],
+    totalElements: 0
   };
   pageNumber: number = 0;
   pageSize: number = 10;
@@ -19,12 +21,12 @@ export class AllProductsListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.chanagePage()
+    
   }
 
-  chanagePage(): void {
-    console.log('Change page')
-    this.productsService.getProductList(this.pageNumber, this.pageSize)
+  chanagePage(pageEvent?:PageEvent): void {
+    console.log('Change page all')
+    this.productsService.getProductList(pageEvent?.pageIndex, pageEvent?.pageSize)
       .subscribe({
         next: (data) => {
           // this.loadingList = false
@@ -37,16 +39,6 @@ export class AllProductsListComponent implements OnInit {
           console.log(error)
         }
       })
-  }
-
-  chanagePageNext(): void {
-    this.pageNumber += 1;
-    this.chanagePage();
-  }
-
-  chanagePagePrevious(): void {
-    this.pageNumber -= 1;
-    this.chanagePage();
   }
 
 }

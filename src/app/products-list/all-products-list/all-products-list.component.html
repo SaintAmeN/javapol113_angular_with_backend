@@ -1,2 +1,6 @@
 <p>all-products-list works!</p>
-<app-products-list [productList]="pageResponse.content"></app-products-list>
+<app-products-list
+  [productList]="pageResponse.content"
+  [totalElements]="pageResponse.totalElements"
+  (loadProductsEvent)="chanagePage($event)">
+</app-products-list>

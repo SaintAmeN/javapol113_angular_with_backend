@@ -21,6 +21,6 @@ export type PageResponse<T> = {
   last?: boolean,
   first?: boolean,
   empty?: boolean,
-  totalElements?: number,
+  totalElements: number,
   totalPages?: number
 }

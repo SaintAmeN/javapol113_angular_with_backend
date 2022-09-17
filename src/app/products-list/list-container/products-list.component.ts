@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Product } from 'src/app/products-service/products.service';
 import { ProductsService } from '../../products-service/products.service';
@@ -20,15 +21,22 @@ export class ProductsListComponent implements OnInit {
     'delete-button'
   ]
 
-  @Input("productList") productList : Product[] = [];
+  @Input("productList") productList: Product[] = [];
+  @Input("totalElements") totalElements: number = 0;
+
+  @Output() loadProductsEvent = new EventEmitter<PageEvent>();
 
   constructor(private snackBar: MatSnackBar, protected productService: ProductsService) {
-    console.log('a')
+
   }
 
   // Component Lifecycle
   ngOnInit(): void {
-    // Po załadowaniu komponentu pobieramy ponownie elementy z backendu (refresh)
+    this.loadProductsEvent.emit({
+      pageSize: 3,
+      pageIndex: 0,
+      length: 0
+    });
   }
 
   deleteProduct(id: number): void {
@@ -47,5 +55,10 @@ export class ProductsListComponent implements OnInit {
           // this.productService.refreshProductList()
         }
       })
+  }
+
+  loadProducts(event?: PageEvent) {
+    console.log(event)
+    this.loadProductsEvent.emit(event);
   }
 }
