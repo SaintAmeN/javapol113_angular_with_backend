@@ -1,0 +1,6 @@
+<app-products-list
+  [productList]="pageResponse.content"
+  [totalElements]="pageResponse.totalElements"
+  [loadingList]="loadingList"
+  (loadProductsEvent)="chanagePage($event)">
+</app-products-list>

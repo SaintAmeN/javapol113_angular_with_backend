@@ -33,6 +33,7 @@ import { RegistrationFormComponent } from './registration-form/registration-form
 import { UserListComponent } from './user-list/user-list.component';
 import { UserServiceService } from './user-service/user-service.service';
 import { AllProductsListComponent } from './products-list/all-products-list/all-products-list.component';
+import { UserProductsListComponent } from './products-list/user-products-list/user-products-list.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { AllProductsListComponent } from './products-list/all-products-list/all-
     ProductsFormComponent,
     RegistrationFormComponent,
     UserListComponent,
-    AllProductsListComponent
+    AllProductsListComponent,
+    UserProductsListComponent
   ],
   imports: [
     BrowserModule,

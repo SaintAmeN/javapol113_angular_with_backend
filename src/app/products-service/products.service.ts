@@ -30,35 +30,26 @@ export class ProductsService {
 
   constructor(private http: HttpClient) { }
 
-  // public refreshProductList(): void {
-  //   this.loadingList = true;
-
-  //   this.http.get('http://localhost:8080/api/product')
-  //     .subscribe((data) => { // promise
-  //       this.loadingList = false
-  //       console.log(data)
-
-  //       let receivedProductList = data as Product[];
-  //       this.productList = receivedProductList;
-  //     })
-  // }
-
-  public getProductList(page?: number|null, size?: number|null): Observable<Object> {
+  public getProductList(page?: number | null, size?: number | null, user?: number | null): Observable<Object> {
     this.loadingList = true;
 
-    let pageParam = "page=" + (page /* !== undefined */ ? page : 0)
-    let sizeParam = "size=" + (size /* !== undefined */ ? size : 10)
+    let params;
+    if (user) {
+      params = {
+        userId: (user ? user : 0),
+        page: (page /* !== undefined */ ? page : 0),
+        size: (size /* !== undefined */ ? size : 10),
+      }
+    }else{
+      params = {
+        page: (page /* !== undefined */ ? page : 0),
+        size: (size /* !== undefined */ ? size : 10),
+      }
+    }
 
-    const url = 'http://localhost:8080/api/product?' + pageParam + '&' + sizeParam
-
-    return this.http.get(url);
-      // .subscribe((data) => { // promise
-      //   this.loadingList = false
-      //   console.log(data)
-
-      //   let receivedProductPageResponse = data as PageResponse<Product>;
-      //   // this.productList = receivedProductList;
-      // })
+    return this.http.get('http://localhost:8080/api/product', {
+      params: params
+    });
   }
 
   public getDefautProductRequest(): CreateProductRequest {
