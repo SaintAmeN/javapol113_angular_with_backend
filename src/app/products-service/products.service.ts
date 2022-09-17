@@ -3,24 +3,22 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 
 export enum ProductState {
-  NEW = "NEW",
+  BRAND_NEW = "BRAND_NEW",
   USED = "USED"
-}
-
-export enum ProductType {
-  ELECTRONICS = "ELECTRONICS",
-  FOOD = "FOOD",
-  LIQUOR = "LIQUOR",
 }
 
 export type Product = {
   id: number|null,
   name: string,
-  description: string,
   state: ProductState,
-  type: ProductType,
-  price: number,
-  quantity: number
+  ownerId: number,
+  createDateTime: string,
+  updateDateTime: string,
+}
+
+export type CreateProductRequest = {
+  name: string,
+  state: ProductState,
 }
 
 @Injectable({
@@ -35,7 +33,7 @@ export class ProductsService {
   public refreshProductList(): void {
     this.loadingList = true;
 
-    this.http.get('http://localhost:8080/products')
+    this.http.get('http://localhost:8080/api/product')
       .subscribe((data) => { // promise
         this.loadingList = false
         console.log(data)
@@ -45,23 +43,19 @@ export class ProductsService {
       })
   }
 
-  public getDefautProductModel(): Product {
+  public getDefautProductRequest(): CreateProductRequest {
     return {
-      id: null,
       name: '',
-      description: '',
-      state: ProductState.NEW,
-      type: ProductType.FOOD,
-      price: 1.0,
-      quantity: 1
+      state: ProductState.BRAND_NEW,
     }
   }
 
-  public sendProductToBackend(product: Product): Observable<Object>{
-    return this.http.post('http://localhost:8080/products', product);
+  public sendProductToBackend(request: CreateProductRequest): Observable<Object>{
+    return this.http.post('http://localhost:8080/api/product', request);
   }
 
   public deleteFromBackend(productId: number): Observable<Object>{
+    // TODO: fix
     return this.http.delete('http://localhost:8080/products/'+productId)
   }
 }

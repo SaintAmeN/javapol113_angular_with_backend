@@ -13,35 +13,11 @@
     </mat-form-field>
 
     <mat-form-field appearance="legacy">
-      <mat-label>Description:</mat-label>
-      <input type="text" matInput placeholder="Description:" [(ngModel)]="product.description">
-    </mat-form-field>
-
-    <mat-form-field appearance="legacy">
       <mat-label>State:</mat-label>
       <mat-select [(ngModel)]="product.state">
-        <mat-option value="NEW">New</mat-option>
+        <mat-option value="BRAND_NEW">Brand New</mat-option>
         <mat-option value="USED">Used</mat-option>
       </mat-select>
-    </mat-form-field>
-
-    <mat-form-field appearance="legacy">
-      <mat-label>Type:</mat-label>
-      <mat-select [(ngModel)]="product.type">
-        <mat-option value="ELECTRONICS">ELECTRONICS</mat-option>
-        <mat-option value="FOOD">FOOD</mat-option>
-        <mat-option value="LIQUOR">LIQUOR</mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <mat-form-field appearance="legacy">
-      <mat-label>Price:</mat-label>
-      <input type="number" min="0.01" step="0.01" matInput placeholder="Price:" [(ngModel)]="product.price">
-    </mat-form-field>
-
-    <mat-form-field appearance="legacy">
-      <mat-label>Quantity:</mat-label>
-      <input type="number" min="1" step="1" matInput placeholder="Quantity:" [(ngModel)]="product.quantity">
     </mat-form-field>
 
     <div class="form-button-row">
@@ -52,5 +28,9 @@
         Clear
       </button>
     </div>
+
+    <mat-card-footer>
+      <mat-progress-bar *ngIf="sendingProduct" mode="indeterminate"></mat-progress-bar>
+    </mat-card-footer>
   </mat-card-content>
 </mat-card>

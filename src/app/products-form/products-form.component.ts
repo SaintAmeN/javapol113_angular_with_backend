@@ -1,8 +1,7 @@
 import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { catchError, Observable, of, tap } from 'rxjs';
-import { Product, ProductsService } from '../products-service/products.service';
+import { CreateProductRequest, Product, ProductsService } from '../products-service/products.service';
 
 @Component({
   selector: 'app-products-form',
@@ -12,7 +11,7 @@ import { Product, ProductsService } from '../products-service/products.service';
 export class ProductsFormComponent implements OnInit {
   @ViewChild('ref') child: ElementRef|any;
 
-  product: Product;
+  product: CreateProductRequest;
   sendingProduct: boolean = false;
 
   notification: string|null = null;
@@ -21,7 +20,7 @@ export class ProductsFormComponent implements OnInit {
               private router: Router,
               private productsService: ProductsService,
               private snackBar: MatSnackBar) {
-    this.product = productsService.getDefautProductModel()
+    this.product = productsService.getDefautProductRequest()
   }
 
   ngOnInit(): void {
@@ -51,16 +50,15 @@ export class ProductsFormComponent implements OnInit {
           setTimeout(() => {
             this.renderer.addClass(this.child.nativeElement, 'hidden');
             setTimeout(() => {
-              // po 5 sekundach wyczyść powiadomienie o błędzie
+              // po 1 sekundzie wyczyść powiadomienie o błędzie
               this.notification = null;
             }, 1000)
           }, 3000)
-
         }
       })
   }
 
   clearForm(): void {
-    this.product = this.productsService.getDefautProductModel()
+    this.product = this.productsService.getDefautProductRequest()
   }
 }
