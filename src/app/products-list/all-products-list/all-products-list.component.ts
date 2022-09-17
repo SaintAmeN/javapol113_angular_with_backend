@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { PageResponse } from 'src/app/model/pagination';
 import { Product, ProductsService } from 'src/app/products-service/products.service';
 
@@ -13,18 +14,17 @@ export class AllProductsListComponent implements OnInit {
     content: [],
     totalElements: 0
   };
-  loadingList : boolean = false;
+  loadingList: boolean = false;
+  pageEvent?: PageEvent;
 
-  // x? <- mówi że może być unidentified
-  // zmienna: number|undefined|null;
-
-  constructor(private productsService: ProductsService) {
+  constructor(
+    private productsService: ProductsService,
+    private snackBar: MatSnackBar) {
   }
 
-  ngOnInit(): void {
-  }
+  chanagePage(pageEvent?: PageEvent): void {
+    this.pageEvent = pageEvent;
 
-  chanagePage(pageEvent?:PageEvent): void {
     this.loadingList = true
     this.productsService.getProductList(pageEvent?.pageIndex, pageEvent?.pageSize)
       .subscribe({
@@ -41,4 +41,31 @@ export class AllProductsListComponent implements OnInit {
         }
       })
   }
+
+  deleteProduct(deletedProductId: number): void {
+    this.productsService.deleteFromBackend(deletedProductId)
+      .subscribe({
+        next: (_) => {
+          this.snackBar.open('Product has been deleted', undefined, {
+            verticalPosition: 'top',
+            horizontalPosition: 'start',
+            duration: 5000
+          })
+          this.chanagePage(this.pageEvent)
+        },
+        error: (error) => {
+          this.snackBar.open(`Error: ${error.message}`, undefined, {
+            verticalPosition: 'top',
+            horizontalPosition: 'start',
+            duration: 5000,
+            panelClass: "error-snackbar",
+          })
+          console.log(error)
+        }
+      })
+  }
+
+  ngOnInit(): void {
+  }
+
 }

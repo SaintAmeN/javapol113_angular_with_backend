@@ -2,5 +2,6 @@
   [productList]="pageResponse.content"
   [totalElements]="pageResponse.totalElements"
   [loadingList]="loadingList"
-  (loadProductsEvent)="chanagePage($event)">
+  (loadProductsEvent)="chanagePage($event)"
+  (productDeleteEvent)="deleteProduct($event)">
 </app-products-list>

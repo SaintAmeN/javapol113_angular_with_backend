@@ -72,3 +72,8 @@
   border-radius: 0 0 4px 4px;
   background-color: var(--color-level-3);
 }
+
+.error-snackbar{
+  background-color: crimson;
+  color: white;
+}

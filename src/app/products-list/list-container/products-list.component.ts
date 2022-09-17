@@ -26,6 +26,7 @@ export class ProductsListComponent implements OnInit {
   @Input("loadingList") loadingList: boolean = false;
 
   @Output() loadProductsEvent = new EventEmitter<PageEvent>();
+  @Output() productDeleteEvent = new EventEmitter<number>();
 
   constructor() {
   }
@@ -39,21 +40,8 @@ export class ProductsListComponent implements OnInit {
   }
 
   deleteProduct(id: number): void {
-  //   this.productService.deleteFromBackend(id)
-  //     .subscribe({
-  //       next: (_) => {
-  //         this.snackBar.open('Product has been deleted', undefined, {
-  //           verticalPosition: 'top',
-  //           horizontalPosition: 'start',
-  //           duration: 5000
-  //         })
-  //         // this.productService.refreshProductList()
-  //       },
-  //       error: (error) => {
-  //         console.log(error)
-  //         // this.productService.refreshProductList()
-  //       }
-  //     })
+    console.log('Product delete clicked: ' + id)
+    this.productDeleteEvent.emit(id)
   }
 
   loadProducts(event?: PageEvent) {

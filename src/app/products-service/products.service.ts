@@ -64,7 +64,6 @@ export class ProductsService {
   }
 
   public deleteFromBackend(productId: number): Observable<Object> {
-    // TODO: fix
-    return this.http.delete('http://localhost:8080/products/' + productId)
+    return this.http.delete('http://localhost:8080/api/product/' + productId)
   }
 }
