@@ -21,7 +21,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDividerModule } from '@angular/material/divider';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductsComponent } from './products/products.component';
-import { ProductsListComponent } from './products-list/products-list.component';
+import { ProductsListComponent } from './products-list/list-container/products-list.component';
 import { ProductsService } from './products-service/products.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -31,6 +31,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RegistrationFormComponent } from './registration-form/registration-form.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { UserServiceService } from './user-service/user-service.service';
+import { AllProductsListComponent } from './products-list/all-products-list/all-products-list.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { UserServiceService } from './user-service/user-service.service';
     ProductsListComponent,
     ProductsFormComponent,
     RegistrationFormComponent,
-    UserListComponent
+    UserListComponent,
+    AllProductsListComponent
   ],
   imports: [
     BrowserModule,

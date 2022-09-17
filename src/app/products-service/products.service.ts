@@ -8,7 +8,7 @@ export enum ProductState {
 }
 
 export type Product = {
-  id: number|null,
+  id: number | null,
   name: string,
   state: ProductState,
   ownerId: number,
@@ -30,17 +30,35 @@ export class ProductsService {
 
   constructor(private http: HttpClient) { }
 
-  public refreshProductList(): void {
+  // public refreshProductList(): void {
+  //   this.loadingList = true;
+
+  //   this.http.get('http://localhost:8080/api/product')
+  //     .subscribe((data) => { // promise
+  //       this.loadingList = false
+  //       console.log(data)
+
+  //       let receivedProductList = data as Product[];
+  //       this.productList = receivedProductList;
+  //     })
+  // }
+
+  public getProductList(page?: number|null, size?: number|null): Observable<Object> {
     this.loadingList = true;
 
-    this.http.get('http://localhost:8080/api/product')
-      .subscribe((data) => { // promise
-        this.loadingList = false
-        console.log(data)
+    let pageParam = "page=" + (page /* !== undefined */ ? page : 0)
+    let sizeParam = "size=" + (size /* !== undefined */ ? size : 10)
 
-        let receivedProductList = data as Product[];
-        this.productList = receivedProductList;
-      })
+    const url = 'http://localhost:8080/api/product?' + pageParam + '&' + sizeParam
+
+    return this.http.get(url);
+      // .subscribe((data) => { // promise
+      //   this.loadingList = false
+      //   console.log(data)
+
+      //   let receivedProductPageResponse = data as PageResponse<Product>;
+      //   // this.productList = receivedProductList;
+      // })
   }
 
   public getDefautProductRequest(): CreateProductRequest {
@@ -50,12 +68,12 @@ export class ProductsService {
     }
   }
 
-  public sendProductToBackend(request: CreateProductRequest): Observable<Object>{
+  public sendProductToBackend(request: CreateProductRequest): Observable<Object> {
     return this.http.post('http://localhost:8080/api/product', request);
   }
 
-  public deleteFromBackend(productId: number): Observable<Object>{
+  public deleteFromBackend(productId: number): Observable<Object> {
     // TODO: fix
-    return this.http.delete('http://localhost:8080/products/'+productId)
+    return this.http.delete('http://localhost:8080/products/' + productId)
   }
 }

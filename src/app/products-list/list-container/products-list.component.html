@@ -2,7 +2,7 @@
   <mat-card-title>Products List</mat-card-title>
   <mat-card-subtitle>List of available products</mat-card-subtitle>
   <mat-card-content class="products-list-content">
-    <table mat-table [dataSource]="productService.productList" class="mat-elevation-z2 product-table">
+    <table mat-table [dataSource]="productList" class="mat-elevation-z2 product-table">
 
       <ng-container matColumnDef="identifier">
         <th mat-header-cell *matHeaderCellDef>Id</th>
