@@ -1,22 +1,23 @@
 <div class="products-container">
-  <mat-grid-list cols="12" rowHeight="24px">
+  <div class="products-grid" cols="12" rowHeight="24px">
     <!-- Pasek na którym wyświetlimy guzik -->
-    <mat-grid-tile [colspan]="10" rowspan="2"></mat-grid-tile>
-    <mat-grid-tile [colspan]="2" rowspan="2">
-      <button mat-raised-button
-          mat-icon-button
-          class="product-btn-add"
-          [routerLink]="['form']">
+    <div class="grid-row">
+      <div class="products-grid-offset-stretch">
 
-        <mat-icon>add</mat-icon>
-      </button>
-    </mat-grid-tile>
+      </div>
+      <div class="products-grid-aligned-right">
+        <button mat-raised-button mat-icon-button class="product-btn-add" [routerLink]="['form']">
+
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+    </div>
 
     <!-- Tutaj umieścimy tabelkę z produktami -->
-    <mat-grid-tile [colspan]="12" rowspan="28">
+    <div class="grid-row">
       <div class="products-content-tile">
         <app-all-products-list></app-all-products-list>
       </div>
-    </mat-grid-tile>
-  </mat-grid-list>
+    </div>
+  </div>
 </div>
