@@ -28,6 +28,9 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ProductsFormComponent } from './products-form/products-form.component';
 
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { RegistrationFormComponent } from './registration-form/registration-form.component';
+import { UserListComponent } from './user-list/user-list.component';
+import { UserServiceService } from './user-service/user-service.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     HomeComponent,
     ProductsComponent,
     ProductsListComponent,
-    ProductsFormComponent
+    ProductsFormComponent,
+    RegistrationFormComponent,
+    UserListComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +65,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatProgressBarModule,
     MatSnackBarModule
   ],
-  providers: [ProductsService],
+  providers: [
+    ProductsService,
+    UserServiceService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
