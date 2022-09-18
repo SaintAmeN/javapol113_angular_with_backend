@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 
 export type Auction = {
   auctionId: number;
@@ -27,12 +28,24 @@ export class AuctionListComponent implements OnInit {
   @Input("auctionList") auctionList: Auction[] = [];
   @Input() totalElements: number = 0;
 
+  @Output() pageChanged = new EventEmitter<PageEvent>;
+
   constructor() { }
 
   ngOnInit(): void {
+    this.changePage({
+      pageSize: 5,
+      pageIndex: 0,
+      length: 0
+    })
   }
 
   auctionDetails(auctionId: number): void {
     // TODO: na potem
+  }
+
+  changePage(pageEvent?: PageEvent) {
+    console.log('Page has been changed')
+    this.pageChanged.emit(pageEvent);
   }
 }

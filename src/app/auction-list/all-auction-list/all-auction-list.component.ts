@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 import { AuctionService } from 'src/app/auction-service/auction.service';
 import { PageResponse } from 'src/app/model/pagination';
 import { Auction } from '../list-container/auction-list.component';
@@ -19,7 +20,6 @@ export class AllAuctionListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getAuctionsFromBackend(0, 10);
   }
 
   getAuctionsFromBackend(page: number, size: number): void {
@@ -37,4 +37,7 @@ export class AllAuctionListComponent implements OnInit {
     })
   }
 
+  loadChangedPage(pageEvent: PageEvent): void{
+    this.getAuctionsFromBackend(pageEvent.pageIndex, pageEvent.pageSize);
+  }
 }
