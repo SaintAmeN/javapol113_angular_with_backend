@@ -1,0 +1,48 @@
+.auction-table{
+  width: 100%;
+  border: 1px solid white;
+  border-radius: 2px;
+}
+
+.auction-list-content{
+  width: 100%;
+}
+
+.mat-column-auction-id{
+  min-width: 64px;
+  width: 64px;
+}
+
+.mat-column-product-id{
+  min-width: 64px;
+  width: 64px;
+}
+
+.mat-column-auction-title{
+  min-width: 64px;
+  width: 128px;
+}
+
+.mat-column-initial-price{
+  min-width: 64px;
+  width: 128px;
+}
+
+.mat-column-auction-start-time{
+  min-width: 64px;
+  width: 128px;
+}
+
+.mat-column-auction-end-time{
+  min-width: 64px;
+  width: 128px;
+}
+
+.mat-column-auction-details-btn{
+  min-width: 64px;
+  width: 128px;
+}
+
+.text-align-center{
+  text-align: center;
+}

@@ -1,0 +1,79 @@
+<mat-card>
+  <mat-card-title>Auction List</mat-card-title>
+  <mat-card-subtitle>List of all auctions</mat-card-subtitle>
+  <mat-card-content class="auction-list-content">
+    <table mat-table [dataSource]="auctionList" class="mat-elevation-z2 auction-table">
+
+      <!-- Kolumna 1 -->
+      <ng-container matColumnDef="auction-id">
+        <!-- Jak wygląda nagłówek -->
+        <th mat-header-cell *matHeaderCellDef>Id</th>
+
+        <!-- Jak wygląda treść kolumny (komórki w kolejnych wierszach) -->
+        <td mat-cell *matCellDef="let auction">{{auction.auctionId}}</td>
+      </ng-container>
+
+      <!-- Kolumna 2 -->
+      <ng-container matColumnDef="product-id">
+        <!-- Jak wygląda nagłówek -->
+        <th mat-header-cell *matHeaderCellDef>Product Id</th>
+
+        <!-- Jak wygląda treść kolumny (komórki w kolejnych wierszach) -->
+        <td mat-cell *matCellDef="let auction">{{auction.productId}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="auction-title">
+        <th mat-header-cell *matHeaderCellDef>Title</th>
+        <td mat-cell *matCellDef="let auction">{{auction.title}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="initial-price">
+        <th mat-header-cell *matHeaderCellDef>Initial price</th>
+        <td mat-cell *matCellDef="let auction">{{auction.initialPrice}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="auction-start-time">
+        <th mat-header-cell *matHeaderCellDef>
+          <div class="text-align-center">
+            Start time
+          </div>
+        </th>
+        <td mat-cell *matCellDef="let auction">
+          <div class="text-align-center">
+            <p>
+              {{auction.startDateTime | date: 'yyyy-MM-dd'}}<br>
+              {{auction.startDateTime | date: 'HH:mm'}}
+            </p>
+          </div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="auction-end-time">
+        <th mat-header-cell *matHeaderCellDef>
+          <div class="text-align-center">
+            End time
+          </div>
+        </th>
+        <td mat-cell *matCellDef="let auction">
+          <div class="text-align-center">
+            <p>
+              {{auction.endDateTime | date: 'yyyy-MM-dd'}}<br>
+              {{auction.endDateTime | date: 'HH:mm'}}
+            </p>
+          </div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="auction-details-btn">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let auction">
+          <button class="auction-details-button" mat-button mat-raised-button color="warn"
+            (click)="auctionDetails(auction.auctionId)">Details</button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </mat-card-content>
+</mat-card>

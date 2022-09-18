@@ -34,6 +34,9 @@ import { UserListComponent } from './user-list/user-list.component';
 import { UserServiceService } from './user-service/user-service.service';
 import { AllProductsListComponent } from './products-list/all-products-list/all-products-list.component';
 import { UserProductsListComponent } from './products-list/user-products-list/user-products-list.component';
+import { AuctionListComponent } from './auction-list/list-container/auction-list.component';
+import { AllAuctionListComponent } from './auction-list/all-auction-list/all-auction-list.component';
+import { AuctionService } from './auction-service/auction.service';
 
 @NgModule({
   declarations: [
@@ -45,7 +48,9 @@ import { UserProductsListComponent } from './products-list/user-products-list/us
     RegistrationFormComponent,
     UserListComponent,
     AllProductsListComponent,
-    UserProductsListComponent
+    UserProductsListComponent,
+    AuctionListComponent,
+    AllAuctionListComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +78,8 @@ import { UserProductsListComponent } from './products-list/user-products-list/us
   ],
   providers: [
     ProductsService,
-    UserServiceService
+    UserServiceService,
+    AuctionService
   ],
   bootstrap: [AppComponent]
 })
