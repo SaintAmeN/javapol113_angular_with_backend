@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AllAuctionListComponent } from './auction-list/all-auction-list/all-auction-list.component';
 import { HomeComponent } from './home/home.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
 import { ProductsFormComponent } from './products-form/products-form.component';
 import { UserProductsListComponent } from './products-list/user-products-list/user-products-list.component';
 import { ProductsComponent } from './products/products.component';
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path:"users", component: UserListComponent},
   {path:"register", component: RegistrationFormComponent},
   {path:"auction", component: AllAuctionListComponent},
+  {path:"product/details/:productId", component: ProductDetailsComponent},
 ];
 
 @NgModule({

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Auction } from '../auction-list/list-container/auction-list.component';
+import { Auction } from '../model/auction';
 import { PageResponse } from '../model/pagination';
 
 @Injectable({

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { Product } from 'src/app/products-service/products.service';
 import { ProductsService } from '../../products-service/products.service';
 
@@ -13,12 +14,15 @@ export class ProductsListComponent implements OnInit {
   displayedColumns: string[] = [
     'identifier',
     'name',
-    'description',
+    // 'description',
     'state',
-    'type',
-    'price',
-    'quantity',
-    'delete-button'
+    // 'type',
+    // 'price',
+    // 'quantity',
+    'product-create-time',
+    'product-update-time',
+    'delete-button',
+    'product-details-button'
   ]
 
   @Input("productList") productList: Product[] = [];
@@ -28,7 +32,7 @@ export class ProductsListComponent implements OnInit {
   @Output() loadProductsEvent = new EventEmitter<PageEvent>();
   @Output() productDeleteEvent = new EventEmitter<number>();
 
-  constructor() {
+  constructor(private router: Router) {
   }
 
   ngOnInit(): void {
@@ -47,5 +51,9 @@ export class ProductsListComponent implements OnInit {
   loadProducts(event?: PageEvent) {
     console.log(event)
     this.loadProductsEvent.emit(event);
+  }
+
+  showProductDetails(productId: number): void {
+    this.router.navigate([`/product/details/${productId}`])
   }
 }

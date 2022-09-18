@@ -1,14 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
+import { Auction } from 'src/app/model/auction';
 
-export type Auction = {
-  auctionId: number;
-  productId: number;
-  title: string;
-  initialPrice: number;
-  startDateTime: string;
-  endDateTime: string
-}
 
 @Component({
   selector: 'app-auction-list',

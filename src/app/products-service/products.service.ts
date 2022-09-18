@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
+import { BACKEND_BASE_URL, TMP_USER_ID } from '../model/constants';
+import { ProductDetails } from '../model/productDetails';
 
 export enum ProductState {
   BRAND_NEW = "BRAND_NEW",
@@ -40,7 +42,7 @@ export class ProductsService {
         page: (page /* !== undefined */ ? page : 0),
         size: (size /* !== undefined */ ? size : 10),
       }
-    }else{
+    } else {
       params = {
         page: (page /* !== undefined */ ? page : 0),
         size: (size /* !== undefined */ ? size : 10),
@@ -59,11 +61,36 @@ export class ProductsService {
     }
   }
 
+  public getDefautProductDetails(): ProductDetails {
+    return {
+      product: {
+        id: null,
+        name: '',
+        state: ProductState.BRAND_NEW,
+        ownerId: 0,
+        createDateTime: '',
+        updateDateTime: '',
+      },
+      owner: {
+        id: null,
+        login: '',
+        name: '',
+        surname: '',
+      },
+      auctions: [],
+      offers: []
+    }
+  }
+
   public sendProductToBackend(request: CreateProductRequest): Observable<Object> {
-    return this.http.post('http://localhost:8080/api/product', request);
+    return this.http.post(BACKEND_BASE_URL + "product/" + TMP_USER_ID, request);
   }
 
   public deleteFromBackend(productId: number): Observable<Object> {
     return this.http.delete('http://localhost:8080/api/product/' + productId)
+  }
+
+  public getProductDetails(productId: number): Observable<ProductDetails> {
+    return this.http.get<ProductDetails>(BACKEND_BASE_URL + "product/" + productId);
   }
 }

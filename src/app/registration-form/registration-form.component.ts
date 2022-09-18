@@ -1,7 +1,8 @@
 import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { CreateUserRequest, UserServiceService } from '../user-service/user-service.service';
+import { CreateUserRequest } from '../model/user';
+import { UserServiceService } from '../user-service/user-service.service';
 
 @Component({
   selector: 'app-registration-form',

@@ -1,0 +1,67 @@
+<div class="product-details-container">
+  <div class="product-overview-row">
+    <div class="product-overview">
+      <mat-card>
+        <mat-card-title>Product overview</mat-card-title>
+        <mat-card-subtitle>Overview product informations</mat-card-subtitle>
+        <mat-card-content class="product-overview-content">
+          <div class="product-id">
+            <div>Identifier:</div>
+            <div>{{productDetails.product.id}}</div>
+          </div>
+          <div class="product-name">
+            <div>Name:</div>
+            <div>{{productDetails.product.name}}</div>
+          </div>
+          <div class="product-state">
+            <div>State:</div>
+            <div>{{productDetails.product.state}}</div>
+          </div>
+          <div class="product-created">
+            <div>Created:</div>
+            <div>
+              {{productDetails.product.createDateTime| date :'yyyy-MM-dd HH:mm'}}
+            </div>
+          </div>
+          <div class="product-updated">
+            <div>Updated:</div>
+            <div>
+              {{productDetails.product.updateDateTime| date :'yyyy-MM-dd HH:mm'}}
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="product-action">
+      <mat-card>
+        <mat-card-title></mat-card-title>
+        <mat-card-subtitle>Product control panel</mat-card-subtitle>
+        <mat-card-content class="product-action-content">
+          <div class="product-admin-actions">
+            <!-- Lewa kolumna-->
+            <button class="action-button" mat-button mat-raised-button color="primary"
+              (click)="openAuctionForm(productDetails.product.id)">Open Auction</button>
+            <button class="action-button" mat-button mat-raised-button color="primary">Finish Auction</button>
+          </div>
+          <div class="product-user-actions">
+            <!-- Prawa kolumna-->
+            <button class="action-button" mat-button mat-raised-button color="primary">Place offer</button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  <div class="product-auction-info-row">
+    <app-auction-list [auctionList]="productDetails.auctions" [totalElements]="productDetails.auctions.length">
+    </app-auction-list>
+  </div>
+  <div class="product-offers-row">
+    <mat-card>
+      <mat-card-title></mat-card-title>
+      <mat-card-subtitle>Product control panel</mat-card-subtitle>
+      <mat-card-content>
+        ABC
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

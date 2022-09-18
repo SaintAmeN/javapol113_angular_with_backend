@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { AuctionService } from 'src/app/auction-service/auction.service';
+import { Auction } from 'src/app/model/auction';
 import { PageResponse } from 'src/app/model/pagination';
-import { Auction } from '../list-container/auction-list.component';
 
 @Component({
   selector: 'app-all-auction-list',

@@ -37,6 +37,7 @@ import { UserProductsListComponent } from './products-list/user-products-list/us
 import { AuctionListComponent } from './auction-list/list-container/auction-list.component';
 import { AllAuctionListComponent } from './auction-list/all-auction-list/all-auction-list.component';
 import { AuctionService } from './auction-service/auction.service';
+import { ProductDetailsComponent } from './product-details/product-details.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { AuctionService } from './auction-service/auction.service';
     AllProductsListComponent,
     UserProductsListComponent,
     AuctionListComponent,
-    AllAuctionListComponent
+    AllAuctionListComponent,
+    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,
