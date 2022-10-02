@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TMP_PRODUCT_ID } from '../model/constants';
 import { ProductDetails } from '../model/productDetails';
 import { ProductsService } from '../products-service/products.service';
@@ -14,7 +14,8 @@ export class ProductDetailsComponent implements OnInit {
 
   constructor(
     private productsService: ProductsService,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private router: Router) {
 
     this.productDetails = this.productsService.getDefautProductDetails()
 
@@ -40,6 +41,6 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   openAuctionForm(productId : number|null) : void {
-    // TODO: przekierowanie na stronę formularza, należy przekazać product Id żeby wiedzieć któremu produktowi dodajemy aukcję.!!!
+    this.router.navigate(['/auction/form/' + productId])
   }
 }

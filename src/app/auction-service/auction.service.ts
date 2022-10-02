@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Auction } from '../model/auction';
+import { Action } from 'rxjs/internal/scheduler/Action';
+import { Auction, CreateAuctionRequest } from '../model/auction';
+import { BACKEND_BASE_URL } from '../model/constants';
 import { PageResponse } from '../model/pagination';
 
 @Injectable({
@@ -23,5 +25,9 @@ export class AuctionService {
       .get<PageResponse<Auction>>('http://localhost:8080/api/auction', {
         params: params
       });
+  }
+
+  public sendAuctionToBackend(request: CreateAuctionRequest): Observable<Auction> {
+    return this.httpClient.post<Auction>(BACKEND_BASE_URL + "auction", request)
   }
 }

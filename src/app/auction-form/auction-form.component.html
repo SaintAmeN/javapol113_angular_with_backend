@@ -1,0 +1,47 @@
+
+<mat-card>
+<mat-card-title>Auction form</mat-card-title>
+<mat-card-subtitle>Add new Auction to a Product</mat-card-subtitle>
+<mat-card-content class="auction-form-content">
+
+  <mat-form-field appearance="legacy">
+    <mat-label>Title:</mat-label>
+    <input type="text" matInput placeholder="Title:" [(ngModel)]="auctionRequest.title">
+  </mat-form-field>
+
+  <mat-form-field appearance="legacy">
+    <mat-label>Initial price:</mat-label>
+    <input type="number" step="0.01" min="0.01" matInput placeholder="Initial price:" [(ngModel)]="auctionRequest.initialPrice">
+  </mat-form-field>
+
+  <mat-form-field appearance="legacy">
+    <mat-label>Start date of the auction:</mat-label>
+    <input matInput type="datetime-local" [(ngModel)]="auctionRequest.startDateTime">
+  </mat-form-field>
+
+  <mat-form-field appearance="legacy">
+    <mat-label>Duration in days:</mat-label>
+    <input type="number" step="1.0" min="1" matInput placeholder="Duration:" [(ngModel)]="auctionRequest.durationInDays">
+  </mat-form-field>
+
+  <!-- Jeśli produkt był wybrany ponieważ kliknęliśmy "dodaj aukcję do produktu" to... -->
+
+  <!-- Jeśli produkt nie był wybrany to... -->
+  <mat-form-field appearance="legacy" *ngIf="product==null">
+    <mat-label>Select product:</mat-label>
+    <mat-select [(ngModel)]="selectedProduct">
+      <mat-option *ngFor="let userProduct of productListToSelect.content" [value]="userProduct.id">{{userProduct.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="form-button-row">
+    <button class="submit-button" type="button" mat-button mat-raised-button (click)="sendAuction()">
+      Submit
+    </button>
+    <button class="clear-button" type="button" mat-button mat-raised-button color="warn" (click)="clearForm()">
+      Clear
+    </button>
+  </div>
+
+</mat-card-content>
+</mat-card>
