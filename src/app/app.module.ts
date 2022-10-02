@@ -39,6 +39,7 @@ import { AllAuctionListComponent } from './auction-list/all-auction-list/all-auc
 import { AuctionService } from './auction-service/auction.service';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { AuctionFormComponent } from './auction-form/auction-form.component';
+import { LoginFormComponent } from './login-form/login-form.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { AuctionFormComponent } from './auction-form/auction-form.component';
     AuctionListComponent,
     AllAuctionListComponent,
     ProductDetailsComponent,
-    AuctionFormComponent
+    AuctionFormComponent,
+    LoginFormComponent
   ],
   imports: [
     BrowserModule,

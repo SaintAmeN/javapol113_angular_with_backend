@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuctionFormComponent } from './auction-form/auction-form.component';
 import { AllAuctionListComponent } from './auction-list/all-auction-list/all-auction-list.component';
 import { HomeComponent } from './home/home.component';
+import { LoginFormComponent } from './login-form/login-form.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { ProductsFormComponent } from './products-form/products-form.component';
 import { UserProductsListComponent } from './products-list/user-products-list/user-products-list.component';
@@ -13,6 +14,7 @@ import { UserListComponent } from './user-list/user-list.component';
 const routes: Routes = [
   {path:"", redirectTo: "home", pathMatch: "full"},
   {path:"home", component: HomeComponent},
+  {path:"login", component: LoginFormComponent},
   {path:"products/form", component: ProductsFormComponent},
   {path:"products", component: ProductsComponent},
   {path:"products/user", component: UserProductsListComponent},

@@ -76,6 +76,7 @@ export class ProductsService {
         login: '',
         name: '',
         surname: '',
+        roles: []
       },
       auctions: [],
       offers: []

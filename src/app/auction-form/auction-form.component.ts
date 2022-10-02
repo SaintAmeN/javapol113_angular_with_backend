@@ -64,7 +64,7 @@ export class AuctionFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getAllUserProducts();
+    // this.getAllUserProducts();
   }
 
   sendAuction(): void {

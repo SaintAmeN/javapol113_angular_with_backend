@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TMP_PRODUCT_ID } from '../model/constants';
 import { ProductDetails } from '../model/productDetails';
 import { ProductsService } from '../products-service/products.service';
 
