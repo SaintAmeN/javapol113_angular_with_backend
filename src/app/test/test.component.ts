@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { BACKEND_BASE_URL } from '../model/constants';
 
 @Component({
@@ -9,7 +10,10 @@ import { BACKEND_BASE_URL } from '../model/constants';
 })
 export class TestComponent implements OnInit {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(
+    private httpClient: HttpClient,
+    private snackBar: MatSnackBar
+  ) { }
 
   ngOnInit(): void {
   }
@@ -18,12 +22,18 @@ export class TestComponent implements OnInit {
     this.httpClient.get(BACKEND_BASE_URL + "test/" + type)
       .subscribe({
         next: (data) => {
-          console.log("Success")
-          console.log(data)
+          this.snackBar.open(`${type} request succeeded`, undefined, {
+            verticalPosition: 'top',
+            horizontalPosition: 'end',
+            duration: 1500
+          })
         },
         error: (error) => {
-          console.log("Error")
-          console.log(error)
+          this.snackBar.open(`${type} request FAILED`, undefined, {
+            verticalPosition: 'bottom',
+            horizontalPosition: 'end',
+            duration: 1500
+          })
         }
       })
   }
