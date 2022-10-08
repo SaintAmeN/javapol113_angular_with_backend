@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuctionService } from '../auction-service/auction.service';
+import { AuthenticationServiceService } from '../authentication-service/authentication-service.service';
 import { CreateAuctionRequest } from '../model/auction';
-import { TMP_USER_ID } from '../model/constants';
 import { PageResponse } from '../model/pagination';
 import { Product, ProductsService } from '../products-service/products.service';
 
@@ -23,10 +23,11 @@ export class AuctionFormComponent implements OnInit {
   auctionRequest: CreateAuctionRequest;
 
   constructor(
+    private authService: AuthenticationServiceService,
     private productsService: ProductsService,
     private auctionService: AuctionService,
-    private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {
     this.auctionRequest = {
       productId: 0,
@@ -93,7 +94,7 @@ export class AuctionFormComponent implements OnInit {
   }
 
   getAllUserProducts(): void {
-    this.productsService.getProductList(0, 100, TMP_USER_ID)
+    this.productsService.getProductList(0, 100, this.authService.loggedInUser?.id!)
       .subscribe({
         next: (data) => {
           console.log(data)

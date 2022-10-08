@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BACKEND_BASE_URL } from '../model/constants';
+import { BACKEND_BASE_URL, LOCAL_STORAGE_AUTH_TOKEN, LOCAL_STORAGE_AUTH_USER } from '../model/constants';
 import { AuthenticationRequest, UserDTO } from '../model/user';
 
 @Injectable({
@@ -18,6 +18,31 @@ export class AuthenticationServiceService {
     private router: Router) {
   }
 
+  getAuthorizationHeader() : string|null {
+
+    if (this.authorizationHeader == null) {
+      const token = localStorage.getItem(LOCAL_STORAGE_AUTH_TOKEN)
+      if(token != null){
+        this.authorizationHeader = token;
+        this.loggedInUser = JSON.parse(localStorage.getItem(LOCAL_STORAGE_AUTH_USER)!)
+      }
+    }
+
+    return this.authorizationHeader
+  }
+
+  logout() {
+    localStorage.removeItem(LOCAL_STORAGE_AUTH_TOKEN)
+    localStorage.removeItem(LOCAL_STORAGE_AUTH_USER)
+
+    this.authorizationHeader = null
+    this.loggedInUser = null
+  }
+
+  isLoggedIn() : boolean {
+    return (this.getAuthorizationHeader() != null)
+  }
+
   authenticate(request: AuthenticationRequest): void {
     this.loggingIn = true;
 
@@ -32,8 +57,11 @@ export class AuthenticationServiceService {
           const authorizationHeader = data.headers.get('Authorization');
           // Bearer:tokenik_tokenik_tokenik
           this.authorizationHeader = authorizationHeader;
-
           this.loggedInUser = data.body;
+
+          localStorage.setItem(LOCAL_STORAGE_AUTH_TOKEN, this.authorizationHeader!)
+          localStorage.setItem(LOCAL_STORAGE_AUTH_USER, JSON.stringify(this.loggedInUser))
+
           console.log(this.loggedInUser)
 
           this.loggingIn = false;
@@ -44,6 +72,9 @@ export class AuthenticationServiceService {
           console.log(error)
           this.authorizationHeader = null;
           this.loggedInUser = null;
+
+          localStorage.removeItem(LOCAL_STORAGE_AUTH_TOKEN)
+          localStorage.removeItem(LOCAL_STORAGE_AUTH_USER)
 
           this.loggingIn = false;
         }

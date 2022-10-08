@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
-import { BACKEND_BASE_URL, TMP_USER_ID } from '../model/constants';
+import { AuthenticationServiceService } from '../authentication-service/authentication-service.service';
+import { BACKEND_BASE_URL } from '../model/constants';
 import { ProductDetails } from '../model/productDetails';
 
 export enum ProductState {
@@ -30,7 +31,10 @@ export class ProductsService {
   productList: Product[] = []
   loadingList: boolean = false;
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private authService : AuthenticationServiceService,
+    private http: HttpClient
+    ) { }
 
   public getProductList(page?: number | null, size?: number | null, user?: number | null): Observable<Object> {
     this.loadingList = true;
@@ -84,7 +88,7 @@ export class ProductsService {
   }
 
   public sendProductToBackend(request: CreateProductRequest): Observable<Object> {
-    return this.http.post(BACKEND_BASE_URL + "product/" + TMP_USER_ID, request);
+    return this.http.post(BACKEND_BASE_URL + "product/" + this.authService.loggedInUser?.id!, request);
   }
 
   public deleteFromBackend(productId: number): Observable<Object> {
