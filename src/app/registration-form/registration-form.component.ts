@@ -41,7 +41,7 @@ export class RegistrationFormComponent implements OnInit {
           })
 
           // po dodaniu obiektu przekieruj na listę
-          this.router.navigate(['/home'])
+          this.router.navigate(['/login'])
           console.log(value)
         },
         error: (error: any) => {

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BACKEND_BASE_URL, LOCAL_STORAGE_AUTH_TOKEN, LOCAL_STORAGE_AUTH_USER } from '../model/constants';
+import { LOCAL_STORAGE_AUTH_TOKEN, LOCAL_STORAGE_AUTH_USER } from '../model/constants';
 import { AuthenticationRequest, UserDTO } from '../model/user';
 
 @Injectable({
@@ -18,16 +18,31 @@ export class AuthenticationServiceService {
     private router: Router) {
   }
 
-  getAuthorizationHeader() : string|null {
+  hasRole(role: string): boolean {
+    return this.loggedInUser != null && this.loggedInUser.roles.includes(role)
+  }
 
+  getUserId(): number | null {
+    this.refreshAuthentication()
+    if (this.loggedInUser != null) {
+      return this.loggedInUser.id
+    }
+
+    return null
+  }
+
+  private refreshAuthentication(): void {
     if (this.authorizationHeader == null) {
       const token = localStorage.getItem(LOCAL_STORAGE_AUTH_TOKEN)
-      if(token != null){
+      if (token != null) {
         this.authorizationHeader = token;
         this.loggedInUser = JSON.parse(localStorage.getItem(LOCAL_STORAGE_AUTH_USER)!)
       }
     }
+  }
 
+  getAuthorizationHeader(): string | null {
+    this.refreshAuthentication()
     return this.authorizationHeader
   }
 
@@ -37,9 +52,10 @@ export class AuthenticationServiceService {
 
     this.authorizationHeader = null
     this.loggedInUser = null
+    this.router.navigate([''])
   }
 
-  isLoggedIn() : boolean {
+  isLoggedIn(): boolean {
     return (this.getAuthorizationHeader() != null)
   }
 

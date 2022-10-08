@@ -9,16 +9,16 @@
 
     <mat-form-field appearance="legacy">
       <mat-label>Username:</mat-label>
-      <input type="text" matInput placeholder="Name:" [(ngModel)]="authenticationRequest.login">
+      <input type="text" matInput placeholder="Name:" (keyup.enter)="login()" [(ngModel)]="authenticationRequest.login">
     </mat-form-field>
 
     <mat-form-field appearance="legacy">
       <mat-label>Password:</mat-label>
-      <input type="password" matInput placeholder="Password:" [(ngModel)]="authenticationRequest.pass">
+      <input type="password" matInput placeholder="Password:" (keyup.enter)="login()" [(ngModel)]="authenticationRequest.pass">
     </mat-form-field>
 
     <div class="form-button-row">
-      <button class="submit-button" type="button" mat-button mat-raised-button (click)="login()">
+      <button class="submit-button" type="submit" mat-button mat-raised-button (click)="login()">
         Submit
       </button>
       <button class="clear-button" type="button" mat-button mat-raised-button color="warn" (click)="clearForm()">

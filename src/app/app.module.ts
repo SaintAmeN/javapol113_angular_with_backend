@@ -42,6 +42,9 @@ import { AuctionFormComponent } from './auction-form/auction-form.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { TestComponent } from './test/test.component';
 import { AuthenticationInterceptor } from './authentication-service/authentication.interceptor';
+import { AuthenticationGuard } from './authentication-service/authentication.guard';
+import { AuthenticationServiceService } from './authentication-service/authentication-service.service';
+import { AdminRoleGuard } from './authentication-service/admin-role.guard';
 
 @NgModule({
   declarations: [
@@ -93,7 +96,10 @@ import { AuthenticationInterceptor } from './authentication-service/authenticati
       provide: HTTP_INTERCEPTORS,
       useClass: AuthenticationInterceptor,
       multi: true
-    }
+    },
+    AdminRoleGuard,
+    AuthenticationGuard,
+    AuthenticationServiceService
   ],
   bootstrap: [AppComponent]
 })

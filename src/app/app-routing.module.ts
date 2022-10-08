@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuctionFormComponent } from './auction-form/auction-form.component';
 import { AllAuctionListComponent } from './auction-list/all-auction-list/all-auction-list.component';
+import { AdminRoleGuard } from './authentication-service/admin-role.guard';
+import { AuthenticationGuard } from './authentication-service/authentication.guard';
 import { HomeComponent } from './home/home.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
@@ -13,19 +15,19 @@ import { TestComponent } from './test/test.component';
 import { UserListComponent } from './user-list/user-list.component';
 
 const routes: Routes = [
-  {path:"", redirectTo: "home", pathMatch: "full"},
-  {path:"test", component: TestComponent},
-  {path:"home", component: HomeComponent},
-  {path:"login", component: LoginFormComponent},
-  {path:"products/form", component: ProductsFormComponent},
-  {path:"products", component: ProductsComponent},
-  {path:"products/user", component: UserProductsListComponent},
-  {path:"users", component: UserListComponent},
-  {path:"register", component: RegistrationFormComponent},
-  {path:"auction", component: AllAuctionListComponent},
-  {path:"auction/form", component: AuctionFormComponent},
-  {path:"auction/form/:productId", component: AuctionFormComponent},
-  {path:"product/details/:productId", component: ProductDetailsComponent},
+  { path: "", redirectTo: "home", pathMatch: "full" },
+  { path: "test", component: TestComponent },
+  { path: "home", component: HomeComponent },
+  { path: "login", component: LoginFormComponent },
+  { path: "register", component: RegistrationFormComponent },
+  { path: "users", component: UserListComponent, canActivate: [AuthenticationGuard, AdminRoleGuard] },
+  { path: "products", component: ProductsComponent, canActivate: [AuthenticationGuard] },
+  { path: "auction", component: AllAuctionListComponent, canActivate: [AuthenticationGuard] },
+  { path: "auction/form", component: AuctionFormComponent, canActivate: [AuthenticationGuard] },
+  { path: "products/form", component: ProductsFormComponent, canActivate: [AuthenticationGuard] },
+  { path: "products/user", component: UserProductsListComponent, canActivate: [AuthenticationGuard] },
+  { path: "auction/form/:productId", component: AuctionFormComponent, canActivate: [AuthenticationGuard] },
+  { path: "product/details/:productId", component: ProductDetailsComponent, canActivate: [AuthenticationGuard] },
 ];
 
 @NgModule({
