@@ -27,6 +27,7 @@ export class AuthenticationServiceService {
         next: (data) => {
           console.log("Success logging in!")
           const authorizationHeader = data.headers.get('Authorization');
+          // Bearer:tokenik_tokenik_tokenik
           this.authorizationHeader = authorizationHeader;
 
           this.loggedInUser = data.body;
