@@ -23,7 +23,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductsComponent } from './products/products.component';
 import { ProductsListComponent } from './products-list/list-container/products-list.component';
 import { ProductsService } from './products-service/products.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ProductsFormComponent } from './products-form/products-form.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
@@ -40,6 +40,8 @@ import { AuctionService } from './auction-service/auction.service';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { AuctionFormComponent } from './auction-form/auction-form.component';
 import { LoginFormComponent } from './login-form/login-form.component';
+import { TestComponent } from './test/test.component';
+import { AuthenticationInterceptor } from './authentication-service/authentication.interceptor';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,8 @@ import { LoginFormComponent } from './login-form/login-form.component';
     AllAuctionListComponent,
     ProductDetailsComponent,
     AuctionFormComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,
@@ -85,7 +88,12 @@ import { LoginFormComponent } from './login-form/login-form.component';
   providers: [
     ProductsService,
     UserServiceService,
-    AuctionService
+    AuctionService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthenticationInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

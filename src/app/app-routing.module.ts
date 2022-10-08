@@ -9,10 +9,12 @@ import { ProductsFormComponent } from './products-form/products-form.component';
 import { UserProductsListComponent } from './products-list/user-products-list/user-products-list.component';
 import { ProductsComponent } from './products/products.component';
 import { RegistrationFormComponent } from './registration-form/registration-form.component';
+import { TestComponent } from './test/test.component';
 import { UserListComponent } from './user-list/user-list.component';
 
 const routes: Routes = [
   {path:"", redirectTo: "home", pathMatch: "full"},
+  {path:"test", component: TestComponent},
   {path:"home", component: HomeComponent},
   {path:"login", component: LoginFormComponent},
   {path:"products/form", component: ProductsFormComponent},
